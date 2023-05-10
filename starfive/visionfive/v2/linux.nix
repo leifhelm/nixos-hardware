@@ -1,7 +1,7 @@
-{ lib, callPackage, linuxPackagesFor, kernelPatches, fetchpatch, ... }:
+{ lib, callPackage, linuxPackagesFor, kernelPatches, ... }:
 
 let
-  modDirVersion = "6.3.0-rc4";
+  modDirVersion = "6.4.0-rc2";
   linuxPkg = { lib, fetchFromGitHub, buildLinux, ... }@args:
     buildLinux (args // {
       version = "${modDirVersion}-starfive-visionfive2";
@@ -9,24 +9,16 @@ let
       src = fetchFromGitHub {
         owner = "starfive-tech";
         repo = "linux";
-        rev = "a57bdb1d13f93c8fc1b3c668cc74d585bb20f3f8";
-        sha256 = "sha256-jnQnJChIGCyJt+zwGfUTsMhrwmWek/ngIM6Pae6OXuI=";
+        rev = "a09ac19e5900f54cb58b812067d35d07e666e56e";
+        sha256 = "sha256-+NU1/AXtpXPVDu0o0wT40xDuRazk0KnrTpc0nbeMOKY=";
       };
 
       inherit modDirVersion;
-      kernelPatches = [
-        { patch = ./fix-memory-size.patch; }
-        {
-          patch = fetchpatch {
-            url =
-              "https://github.com/torvalds/linux/commit/d83806c4c0cccc0d6d3c3581a11983a9c186a138.diff";
-            hash = "sha256-xUnEJkzQRIIBF/0GIpS0Cd+h6OdSiJlyva5xwxtleE0=";
-          };
-        }
-      ] ++ kernelPatches;
+      kernelPatches = [{ patch = ./fix-memory-size.patch; }] ++ kernelPatches;
 
       structuredExtraConfig = with lib.kernel; {
         PL330_DMA = no;
+        SOC_STARFIVE = yes;
         PINCTRL_STARFIVE_JH7110_SYS = yes;
         SERIAL_8250_DW = yes;
       };
