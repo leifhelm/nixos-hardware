@@ -13,8 +13,7 @@ let
         sha256 = "sha256-+NU1/AXtpXPVDu0o0wT40xDuRazk0KnrTpc0nbeMOKY=";
       };
 
-      inherit modDirVersion;
-      kernelPatches = [{ patch = ./fix-memory-size.patch; }] ++ kernelPatches;
+      inherit kernelPatches modDirVersion;
 
       structuredExtraConfig = with lib.kernel; {
         PL330_DMA = no;
