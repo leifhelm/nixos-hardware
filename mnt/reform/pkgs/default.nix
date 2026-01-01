@@ -2,8 +2,25 @@
   lib,
   callPackage,
 }:
+let
+  boardRevisions = [
+    "20_R3"
+    "25_R2"
+    "30_R1"
+  ];
+in
 rec {
-  reform-flash-uboot =
+  lpcFirmware = lib.genAttrs boardRevisions (
+    boardRev: callPackage ./lpc-firmware.nix { inherit boardRev; }
+  );
+  lpcFirmwareFlasher = lib.genAttrs boardRevisions (
+    boardRev:
+    callPackage ./lpc-firmware-flasher.nix {
+      inherit boardRev;
+      lpc-firmware = lpcFirmware."${boardRev}";
+    }
+  );
+  reformFlashUboot =
     lib.mapAttrs (_name: config: callPackage ./reform-flash-uboot.nix { inherit config; })
       {
         reform2-rk3588-dsi = {

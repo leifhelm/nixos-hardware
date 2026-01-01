@@ -6,5 +6,13 @@
         "repo": "reform-debian-packages",
         "rev": "8268e5ebcf049afad80b470025adba75305d2c80",
         "hash": "sha256-Set1jLoiyCAgE9vlRpwsFzDueHmp+B680+JxCVth6+U="
-    }
+    },
+    "reform": {
+        "domain": "source.mnt.re",
+        "owner": "reform",
+        "repo": "reform",
+        "rev": "3cc6fbb99937b9cbcbc5250d00ec70c531357d41",
+        "hash": "sha256-N78gIeUlrZ+AM0sxdqt7oNnMNkNtO7036AuZjyzZX2Y="
+    },
+    "reformVersion": "2025-07-01"
 }

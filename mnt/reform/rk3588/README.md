@@ -41,7 +41,7 @@ Create and configure the `flake.nix` file:
 }
 ```
 
-Build the installer image.
+Then build the installer image.
 
 ``` sh
 nix build .#
