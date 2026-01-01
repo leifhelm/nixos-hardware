@@ -37,4 +37,22 @@ rec {
   ubootImage.reform2-rk3588-dsi = callPackage ../rk3588/uboot-image.nix {
     uboot = uboot.reform2-rk3588-dsi;
   };
+  keyboard4Firmware = lib.mergeAttrsList (
+    lib.mapCartesianProduct
+      (config: {
+        "${config.kbdMode}-${config.kbdVariant}" = callPackage ./keyboard4-firmware.nix {
+          inherit (config) kbdMode kbdVariant;
+        };
+      })
+      {
+        kbdMode = [
+          "laptop"
+          "standalone"
+        ];
+        kbdVariant = [
+          "us"
+          "intl"
+        ];
+      }
+  );
 }
