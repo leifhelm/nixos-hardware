@@ -52,6 +52,6 @@ in
 }).overrideAttrs
   (
     _final: prev: {
-      nativeBuildInputs = prev.nativeBuildInputs ++ [ python3Packages.setuptools ];
+      nativeBuildInputs = prev.nativeBuildInputs ++ [ python3Packages.setuptools_80 ];
     }
   )
