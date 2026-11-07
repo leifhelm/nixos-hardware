@@ -19,14 +19,14 @@ let
       args
       // rec {
         version = "${modDirVersion}-mnt-reform";
-        modDirVersion = "7.2.6";
+        modDirVersion = "7.3.1";
 
         src = fetchFromGitLab {
           domain = "source.mnt.re";
           owner = "reform";
           repo = "linux";
-          rev = "ae46c759102a8442a4a55de20f8b17a29e3220b8";
-          hash = "sha256-IgZkXwIZgcJGLpy+FG1fs9dpAKOIefwUfvLwcVJPngY=";
+          rev = "3ce07a06f48ba961df98ad5593e94c1d6c7be86e";
+          hash = "sha256-ggbzWxC6osZaiHUb2vL8Q5AfSNIE9J1Yem9Ulc/haLQ=";
         };
 
         structuredExtraConfig = with lib.kernel; {
